@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Index from './pages/Peliculas/Index';
+import Detalle from "./pages/Peliculas/Detalle";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+   <BrowserRouter>
+      <div>
+         <Navbar />
+         <Redirect from="/" to="/peliculas" exact />
+         <Switch>
+            <Route path="/peliculas" exact component={Index} />
+            <Route path="/peliculas/:id" component={Detalle} />
+         </Switch>
+      </div>
+   </BrowserRouter>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
